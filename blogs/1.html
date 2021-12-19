@@ -1,0 +1,72 @@
+<!--
+ * @Description: Echarts教程示例文档
+ * @Author: YoungWind
+ * @Date: 2020-10-11 00:08:56
+ * @LastEditTime: 2020-10-11 01:36:08
+ * @LastEditors: YoungWind
+ * @FilePath: \echarts_code\index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Echarts教程示例文档</title>
+        <script src="echarts.js"></script>
+    </head>
+    <body>
+        <!-- 
+      创建一个宽100%，高50vh的DOM结点，并且为其Id为basicChart。 
+      vh是一个单位，页面可见区域按高度被均分为100份，
+      1vh代表屏幕的百分之一高，
+      50vh代表屏幕的一半高。
+    -->
+        <div id="basicChart" style="width: 100%; height: 50vh"></div>
+​
+        <script>
+            // 1. 通过document选中Id为basicChart的的DOM结点，并且将其保存为basicChart。
+            let basicChartDOM = document.querySelector('#basicChart')
+            // 2. 基于选中的DOM结点，初始化echarts实例
+            let basicChart = echarts.init(basicChartDOM)
+            // 3. 指定图表的配置项和数据
+            let option = {
+                // 3.1 设置标题名称
+                title: {
+                    text: '学术硕士国家线变化趋势图(计算机科学与技术专业)',
+                },
+                // 3.2 设置图例
+                legend: {
+                    data: ['A类', 'B类'],
+                },
+                // 3.3 设置坐标轴数据
+                xAxis: {
+                    data: ['2015', '2016', '2017', '2018', '2019'],
+                },
+                // 3.4 设置y轴的数值类型为数值型，并且确定最大值和最小值。
+                yAxis: {
+                    min: 250,
+                    max: 300,
+                    type: 'value',
+                },
+                // 3.4 设置系列列表。每个系列通过 type 决定自己的图表类型，常见的有line，bar...等等
+                series: [
+                    {
+                        //name需要和legend(图例)对应
+                        name: 'A类',
+                        //type设置为line代表折线图，设置为bar代表柱状图
+                        type: 'line',
+                        //y轴所需要的数据，数据按下标与x轴一一对应。
+                        data: [275, 285, 290, 280, 290],
+                    },
+                    {
+                        name: 'B类',
+                        type: 'line',
+                        data: [265, 275, 280, 270, 280],
+                    },
+                ],
+            }
+            // 4. 使用刚指定的配置项和数据显示图表。
+            basicChart.setOption(option)
+        </script>
+    </body>
+</html>
